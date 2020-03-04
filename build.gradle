@@ -1,6 +1,6 @@
 buildscript {
     ext{
-        springBootVersion = '2.2.5.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -25,12 +25,24 @@ repositories {
 }
 
 dependencies {
+    //web
     compile('org.springframework.boot:spring-boot-starter-web')
+
+    //test
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
+    //lombok
     compile('org.projectlombok:lombok')
+
     //lombok setting for gradle5
     testCompile('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
     testAnnotationProcessor('org.projectlombok:lombok')
+
+    //JPA
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+    //Inmemory DB H2
+    compile('com.h2database:h2')
+
 }
