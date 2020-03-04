@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group 'org.example.boot'
+group 'com.example.boot'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -27,4 +27,10 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile('org.projectlombok:lombok')
+    //lombok setting for gradle5
+    testCompile('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }
