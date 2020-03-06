@@ -1,19 +1,24 @@
 buildscript {
     ext{
         springBootVersion = '2.1.9.RELEASE'
+        querydslPluginVersion = '1.0.10'
     }
     repositories {
         mavenCentral()
         jcenter()
+        maven {url "https://plugins.gradle.org/m2/"} //plugin 저장소
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.7.RELEASE" //gradle plugin 관리
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}") //querydsl 플러그인 의존성 등록
     }
 }
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
 
 group 'com.example.boot'
 version '1.0-SNAPSHOT'
@@ -48,4 +53,32 @@ dependencies {
     //Mustache(Template Engine)
     compile('org.springframework.boot:spring-boot-starter-mustache')
 
+    //querydsl
+    compile("com.querydsl:querydsl-jpa")
+    compile("com.querydsl:querydsl-apt")
 }
+//querydsl setting start
+def querydslSrcDir = 'src/main/generated'
+
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
+}
+
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+//querydsl setting end
