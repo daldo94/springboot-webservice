@@ -28,10 +28,16 @@ public class PostsService {
     @Transactional
     public Long update(Long id, PostsUpdateRequestDTO requestDTO) {
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+        //Using Dirty Checking
         posts.update(requestDTO.getTitle(), requestDTO.getContent());
         return id;
     }
 
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
+        postsRepository.delete(posts);
+    }
 
     public PostsResponseDTO findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
