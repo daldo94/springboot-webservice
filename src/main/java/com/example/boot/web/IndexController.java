@@ -1,5 +1,6 @@
 package com.example.boot.web;
 
+import com.example.boot.config.auth.LoginUser;
 import com.example.boot.config.auth.dto.SessionUser;
 import com.example.boot.service.posts.PostsService;
 import com.example.boot.web.dto.PostsResponseDTO;
@@ -19,9 +20,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user!=null){
             model.addAttribute("userName",user.getName());
         }
