@@ -56,6 +56,9 @@ dependencies {
     //querydsl
     compile("com.querydsl:querydsl-jpa")
     compile("com.querydsl:querydsl-apt")
+    
+    //spring security
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 }
 //querydsl setting start
 def querydslSrcDir = 'src/main/generated'
