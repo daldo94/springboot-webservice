@@ -59,6 +59,11 @@ dependencies {
     
     //spring security
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    //spring security test
+    testCompile('org.springframework.security:spring-security-test')
+    
+    //session-jdbc
+    compile('org.springframework.session:spring-session-jdbc')
 }
 //querydsl setting start
 def querydslSrcDir = 'src/main/generated'
