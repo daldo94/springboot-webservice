@@ -2,7 +2,7 @@
 .gradle
 .idea
 
-/build/
+build
 generated
 
 application-oauth.properties
