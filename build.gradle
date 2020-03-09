@@ -64,6 +64,9 @@ dependencies {
     
     //session-jdbc
     compile('org.springframework.session:spring-session-jdbc')
+
+    //maria-db
+    compile('org.mariadb.jdbc:mariadb-java-client')
 }
 //querydsl setting start
 def querydslSrcDir = 'src/main/generated'
