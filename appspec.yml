@@ -18,9 +18,9 @@ hooks:
       runas: root
   ApplicationStart: # Nginx와 연결되어 있지 않은 Port로 새 버전의 스프링 부트를 시작한다.
     - location: start.sh
-        timeout: 60
-        runas: root
+      timeout: 60
+      runas: root
   ValidateService: # 새 스프링 부트가 정상적으로 실행됬는지 확인한다.
     - location: health.sh
-        timeout: 60
-        runas: root
+      timeout: 60
+      runas: root
